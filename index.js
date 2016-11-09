@@ -105,7 +105,7 @@
       return tip
     }
 
-    tip.displayOnCursor(n) {
+    tip.displayOnCursor = function(n) {
 
       if(n) {
         onCursor = true;
@@ -327,7 +327,7 @@
     // Returns an Object {n, s, e, w, nw, sw, ne, se}
     function getScreenBBox() {
       var targetel   = target || d3Selection.event.target,
-          event    = d3Selection.event;
+          event      = d3Selection.event;
 
       while (targetel.getScreenCTM == null && targetel.parentNode == null) {
         targetel = targetel.parentNode
@@ -342,7 +342,7 @@
           x          = tbbox.x,
           y          = tbbox.y
 
-      if(onCursor) {
+      if (onCursor) {
         point.x = event.screenX
         point.y = event.screenY
       } else {
