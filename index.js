@@ -11,16 +11,8 @@
   if (typeof define === 'function' && define.amd) {
     /* eslint-disable global-require */
     // AMD. Register as an anonymous module with d3 as a dependency.
-    try {
-      d3Collection = require('d3-collection')
-    } catch (e) {
-      d3Collection = require('d3')
-    }
-    try {
-      d3Selection = require('d3-selection')
-    } catch (e) {
-      d3Selection = require('d3')
-    }
+    d3Collection = require('d3')
+    d3Selection = require('d3')
     define([], function() {
       return factory(d3Collection, d3Selection)
     })
