@@ -324,7 +324,7 @@
     //
     // Returns an Object {n, s, e, w, nw, sw, ne, se}
     function getScreenBBox() {
-      var targetel   = target || d3Collection.event.target
+      var targetel   = target || d3Selection.event.target
 
       while (targetel.getScreenCTM == null && targetel.parentNode == null) {
         targetel = targetel.parentNode
