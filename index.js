@@ -40,8 +40,8 @@
         node        = initNode(),
         svg         = null,
         point       = null,
-        target      = null,
-        onCursor    = false
+        target      = null
+
 
     function tip(vis) {
       svg = getSVGNode(vis)
@@ -103,15 +103,6 @@
       var args =  Array.prototype.slice.call(arguments)
       d3Selection.selection.prototype.attr.apply(getNodeEl(), args)
       return tip
-    }
-
-    tip.displayOnCursor = function(n) {
-
-      if(n) {
-        onCursor = true;
-      }
-
-      return tip;
     }
 
     // Public: Proxy style calls to the d3 tip container.
@@ -326,13 +317,11 @@
     //
     // Returns an Object {n, s, e, w, nw, sw, ne, se}
     function getScreenBBox() {
-      var targetel   = target || d3Selection.event.target,
-          event      = d3Selection.event;
+      var targetel   = target || d3Selection.event.target
 
       while (targetel.getScreenCTM == null && targetel.parentNode == null) {
         targetel = targetel.parentNode
       }
-
 
       var bbox       = {},
           matrix     = targetel.getScreenCTM(),
@@ -342,14 +331,8 @@
           x          = tbbox.x,
           y          = tbbox.y
 
-      if (onCursor) {
-        point.x = event.screenX
-        point.y = event.screenY
-      } else {
-        point.x = x
-        point.y = y
-      }
-
+      point.x = x
+      point.y = y
       bbox.nw = point.matrixTransform(matrix)
       point.x += width
       bbox.ne = point.matrixTransform(matrix)
